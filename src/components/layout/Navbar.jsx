@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 //* Components
-import { Button } from "..";
+import { AuthProviders, Button } from "..";
 //* React Icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
@@ -45,8 +45,7 @@ const Navbar = () => {
             {/* //TODO: Profile Menu Component */}
           </div>
         ) : (
-          // TODO: AuthProvider component
-          "AuthProvider"
+          <AuthProviders />
         )}
       </div>
       {/* //TODO: MenuCategory Component */}

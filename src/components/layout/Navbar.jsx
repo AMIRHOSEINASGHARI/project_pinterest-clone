@@ -15,7 +15,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const session = useSession();
-  console.log(session);
 
   return (
     <header>

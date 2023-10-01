@@ -9,7 +9,9 @@ export default function App({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Layout>
-        <Component {...pageProps} />
+        <div className="mt-24">
+          <Component {...pageProps} />
+        </div>
       </Layout>
     </SessionProvider>
   );

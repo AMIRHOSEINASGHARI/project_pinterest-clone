@@ -8,7 +8,7 @@ import { Button } from ".";
 const AuthProviders = () => {
   return (
     <Button
-      handleButton={() => signIn("github")}
+      handleButton={() => signIn("google")}
       type="button"
       styles="flex items-center gap-2 shadow rounded-lg py-1 px-3"
       title={

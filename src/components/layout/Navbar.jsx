@@ -3,8 +3,10 @@ import { useState } from "react";
 //* Next
 import Link from "next/link";
 import Image from "next/image";
+//* Next-Auth
+import { useSession } from "next-auth/react";
 //* Components
-import { AuthProviders, Button } from "..";
+import { AuthProviders, Button, ProfileMenu } from "..";
 //* React Icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
@@ -12,7 +14,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const session = null;
+  const session = useSession();
+  console.log(session);
 
   return (
     <header>
@@ -34,7 +37,7 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        {session ? (
+        {session?.status === "authenticated" ? (
           <div className="flex items-center gap-1">
             <Link
               href="/project/create"
@@ -42,7 +45,7 @@ const Navbar = () => {
             >
               <AiOutlinePlus />
             </Link>
-            {/* //TODO: Profile Menu Component */}
+            <ProfileMenu session={session} />
           </div>
         ) : (
           <AuthProviders />

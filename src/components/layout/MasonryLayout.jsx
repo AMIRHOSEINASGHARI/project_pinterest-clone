@@ -2,6 +2,7 @@
 import Masonry from "react-masonry-css";
 //* Constants Imports
 import { breackPointsObject } from "@/constants";
+import { ProjectCard } from "..";
 
 const MasonryLayout = ({ projects }) => {
   return (
@@ -10,7 +11,12 @@ const MasonryLayout = ({ projects }) => {
       breakpointCols={breackPointsObject}
     >
       {projects.map((project) => (
-        <p key={project._id}>project</p>
+        <ProjectCard
+          key={project._id}
+          websiteUrl={project.websiteUrl}
+          image={project.image}
+          _id={project._id}
+        />
       ))}
     </Masonry>
   );

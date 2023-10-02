@@ -10,6 +10,7 @@ import ProjectForm from "./form/ProjectForm";
 import TextList from "./form/TextList";
 import Loader from "./Loader";
 import MasonryLayout from "./layout/MasonryLayout";
+import ProjectCard from "./project/ProjectCard";
 
 export {
   Layout,
@@ -24,4 +25,5 @@ export {
   TextList,
   Loader,
   MasonryLayout,
+  ProjectCard,
 };

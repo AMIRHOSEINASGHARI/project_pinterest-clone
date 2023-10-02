@@ -21,3 +21,6 @@ body {
 .form-input-base {
   @apply bg-gray-100 rounded-lg p-4 lg:p-6 placeholder:text-gray-400 text-gray-600 focus:outline outline-blue-500;
 }
+.project-action-btn {
+  @apply p-2 bg-white/80 w-fit rounded-full;
+}

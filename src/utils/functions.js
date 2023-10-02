@@ -47,3 +47,15 @@ export const resizeFile = (file) =>
       "base64"
     );
   });
+
+export const cloudinaryOptions = {
+  use_filename: true,
+  unique_filename: true,
+  overwrite: true,
+  transformation: [
+    {
+      width: 1000,
+      crop: "scale",
+    },
+  ],
+};

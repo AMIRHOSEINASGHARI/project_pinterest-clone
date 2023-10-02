@@ -2,6 +2,7 @@
 import { useState } from "react";
 //* Next
 import Image from "next/image";
+import { useRouter } from "next/router";
 //* React Icons
 import { AiOutlineFolderAdd } from "react-icons/ai";
 import { FiTrash } from "react-icons/fi";
@@ -15,6 +16,7 @@ import { createProject, resizeFile } from "@/utils/functions";
 
 const ProjectForm = ({ type }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   //* FORM VALUES
   const [form, setForm] = useState({
     title: "",

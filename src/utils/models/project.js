@@ -7,7 +7,6 @@ const projectSchema = new Schema({
   image: { type: String, required: true },
   category: { type: String, required: true },
   websiteUrl: { type: String, default: "" },
-  published: { type: Boolean, default: false },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   createdBy: { type: Schema.Types.ObjectId, ref: "PinterestUser" },
   metaTitle: { type: String, required: true },

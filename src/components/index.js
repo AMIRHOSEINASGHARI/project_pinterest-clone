@@ -9,6 +9,7 @@ import Modal from "./form/Modal";
 import ProjectForm from "./form/ProjectForm";
 import TextList from "./form/TextList";
 import Loader from "./Loader";
+import MasonryLayout from "./layout/MasonryLayout";
 
 export {
   Layout,
@@ -22,4 +23,5 @@ export {
   ProjectForm,
   TextList,
   Loader,
+  MasonryLayout,
 };

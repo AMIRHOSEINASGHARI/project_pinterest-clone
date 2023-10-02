@@ -1,7 +1,7 @@
 //* React
 import { useEffect, useState } from "react";
 //* Components
-import { Loader } from "@/components";
+import { Loader, MasonryLayout } from "@/components";
 
 const Home = () => {
   const [projects, setProjects] = useState(null);
@@ -11,6 +11,7 @@ const Home = () => {
       const res = await fetch("/api/project/get-all");
       const data = await res.json();
 
+      //TODO: filtering the projects
       setProjects(data?.data);
     };
 
@@ -29,7 +30,7 @@ const Home = () => {
   } else if (projects.length === 0) {
     return <h1 className="text-center text-3xl mt-24">No Pins!</h1>;
   } else if (projects.length !== 0) {
-    return <div>Home</div>;
+    return <MasonryLayout projects={projects} />;
   }
 };
 

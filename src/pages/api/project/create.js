@@ -59,9 +59,6 @@ export default async function handler(req, res) {
       websiteUrl: body.websiteUrl || "",
       comments: [],
       createdBy: new Types.ObjectId(user._id),
-      metaTitle: body.metaTitle,
-      metaDescription: body.metaDescription,
-      metaKeywords: body.metaKeywords,
     });
 
     user.projects.push(project._id);

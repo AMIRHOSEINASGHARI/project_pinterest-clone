@@ -33,23 +33,16 @@ const ProjectDeials = ({ projectId }) => {
 
   if (data && data.status === "success") {
     const { project } = data.data;
-    const {
-      category,
-      description,
-      image,
-      title,
-      websiteUrl,
-      metaTitle,
-      metaDescription,
-      metaKeywords,
-    } = project;
+    const { category, description, image, title, websiteUrl } = project;
 
     return (
       <div className="pb-3">
         <Head>
-          <title>{metaTitle}</title>
-          <meta name="description" content={metaDescription} />
-          <meta name="keywords" content={metaKeywords} />
+          <title>{title || "Project"}</title>
+          <meta
+            name="description"
+            content={description || "Project Description"}
+          />
         </Head>
         <div className="flex items-center justify-center">
           <div className="rounded-3xl cursor-default flex flex-col lg:flex-row overflow-hidden min-w-[280px] lg:w-[950px] shadow-[0_0_20px_rgba(0,0,0,0.2)]">

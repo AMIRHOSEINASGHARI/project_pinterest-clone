@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { AiOutlineFolderAdd } from "react-icons/ai";
 import { FiTrash } from "react-icons/fi";
 //* Components
-import { Button, CustomFilter, FormField, TextList } from "..";
+import { Button, CustomFilter, FormField } from "..";
 import toast from "react-hot-toast";
 //* Constants
 import { categories } from "@/constants";
@@ -24,9 +24,6 @@ const ProjectForm = ({ type }) => {
     image: "",
     category: "",
     websiteUrl: "",
-    metaTitle: "",
-    metaDescription: "",
-    metaKeywords: [],
   });
 
   const handleSubmit = async (e) => {
@@ -157,32 +154,6 @@ const ProjectForm = ({ type }) => {
           placeholder="https://example.com"
           formValue={form.websiteUrl}
           handleChange={handleChangeInputValue}
-        />
-        {/* META TITLE */}
-        <FormField
-          inputStyles="form-input-base"
-          name="metaTitle"
-          type="text"
-          inputLabel="Meta Title"
-          placeholder="Meta Title"
-          formValue={form.metaTitle}
-          handleChange={handleChangeInputValue}
-        />
-        {/* META DESCRIPTION */}
-        <FormField
-          inputStyles="form-input-base"
-          name="metaDescription"
-          isTextArea
-          inputLabel="Meta Description"
-          placeholder="Meta Description"
-          formValue={form.metaDescription}
-          handleChange={handleChangeInputValue}
-        />
-        <TextList
-          type="metaKeywords"
-          data={form}
-          setData={setForm}
-          title="Meta Keywords"
         />
       </div>
       <Button

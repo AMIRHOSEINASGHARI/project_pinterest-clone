@@ -14,6 +14,7 @@ import ProjectCard from "./project/ProjectCard";
 import ProjectActions from "./project/ProjectActions";
 import CreatedBySection from "./project/CreatedBySection";
 import CommentsSection from "./project/CommentsSection";
+import PublishComment from "./project/PublishComment";
 
 export {
   Layout,
@@ -32,4 +33,5 @@ export {
   ProjectActions,
   CreatedBySection,
   CommentsSection,
+  PublishComment,
 };

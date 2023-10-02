@@ -11,6 +11,7 @@ import {
   CreatedBySection,
   Loader,
   ProjectActions,
+  PublishComment,
 } from "@/components";
 
 const ProjectDeials = ({ projectId }) => {
@@ -99,8 +100,13 @@ const ProjectDeials = ({ projectId }) => {
                   <CommentsSection comments={comments} />
                 </div>
               </div>
-              {/* //TODO: PublishComment Component */}
-              'PublishComment'
+              {session?.status === "authenticated" && (
+                <PublishComment
+                  fetchProject={fetchProject}
+                  session={session}
+                  projectId={projectId}
+                />
+              )}
             </div>
           </div>
         </div>

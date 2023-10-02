@@ -24,3 +24,6 @@ body {
 .project-action-btn {
   @apply p-2 bg-white/80 w-fit rounded-full;
 }
+.project-details-actions-btn {
+  @apply bg-gray-100 rounded-full h-8 w-8 flex items-center justify-center;
+}

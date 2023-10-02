@@ -2,11 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 //* Next
 import Head from "next/head";
-//* Components
-import { Loader } from "@/components";
 import Image from "next/image";
+//* Next-Auth
+import { useSession } from "next-auth/react";
+//* Components
+import { Loader, ProjectActions } from "@/components";
 
 const ProjectDeials = ({ projectId }) => {
+  const session = useSession();
   const [data, setData] = useState(null);
   const moreLikeProject = data?.data?.moreLikeProject?.filter(
     (item) => item._id !== projectId
@@ -62,9 +65,12 @@ const ProjectDeials = ({ projectId }) => {
             </div>
             <div className="p-5 px-3 sm:p-8 lg:w-1/2 flex flex-col justify-between">
               <div>
-                {/* //TODO: ProjectActions Component */}
                 <div className="flex items-center justify-between bg-white py-2">
-                  ProjectActions Component
+                  <ProjectActions
+                    session={session}
+                    data={data}
+                    projectId={projectId}
+                  />
                   <div className="bg-gray-100 text-xs rounded-full py-1.5 px-5">
                     {category}
                   </div>

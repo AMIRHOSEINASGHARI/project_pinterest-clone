@@ -2,6 +2,8 @@
 import { mongoConnect } from "@/utils/functions";
 //* Models
 import { Project } from "@/utils/models/project";
+import { PinterestUser } from "@/utils/models/user";
+import { Comment } from "@/utils/models/comment";
 
 export default async function handler(req, res) {
   try {

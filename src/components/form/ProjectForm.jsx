@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 //* Constants
 import { categories } from "@/constants";
 //* Utility Functions
-import { resizeFile } from "@/utils/functions";
+import { createProject, resizeFile } from "@/utils/functions";
 
 const ProjectForm = ({ type }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,7 +33,7 @@ const ProjectForm = ({ type }) => {
     if (type === "create") {
       if (form.image && form.category) {
         setIsSubmitting(true);
-        let result = null; //TODO: fetch from api function
+        const result = await createProject(form);
         setIsSubmitting(false);
         if (result.status === "success") {
           toast.success(result.message);
@@ -56,7 +56,7 @@ const ProjectForm = ({ type }) => {
       }
     }
   };
-  console.log(form);
+
   const handleChangeImage = async (e) => {
     e.preventDefault();
 

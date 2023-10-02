@@ -22,6 +22,16 @@ export const shorterText = (text, maxCharacter) => {
   }
 };
 
+export async function createProject(form) {
+  const res = await fetch("/api/project/create", {
+    method: "POST",
+    body: JSON.stringify(form),
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  return data;
+}
+
 export const resizeFile = (file) =>
   new Promise((resolve) => {
     FileResizer.imageFileResizer(
@@ -36,4 +46,4 @@ export const resizeFile = (file) =>
       },
       "base64"
     );
-  }); // $$ RESIZE UPLOADED IMAGE FUNCTION
+  });

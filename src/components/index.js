@@ -8,6 +8,7 @@ import CustomFilter from "./form/CategoryFilter";
 import Modal from "./form/Modal";
 import ProjectForm from "./form/ProjectForm";
 import TextList from "./form/TextList";
+import Loader from "./Loader";
 
 export {
   Layout,
@@ -20,4 +21,5 @@ export {
   Modal,
   ProjectForm,
   TextList,
+  Loader,
 };

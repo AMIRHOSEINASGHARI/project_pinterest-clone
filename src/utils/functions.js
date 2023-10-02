@@ -32,6 +32,15 @@ export async function createProject(form) {
   return data;
 }
 
+export const deleteProject = async (projectId) => {
+  const res = await fetch(`/api/project/${projectId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "applicaiton/json" },
+  });
+  const data = await res.json();
+  return data;
+};
+
 export const resizeFile = (file) =>
   new Promise((resolve) => {
     FileResizer.imageFileResizer(

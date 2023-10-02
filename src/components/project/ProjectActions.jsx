@@ -1,8 +1,12 @@
 //* React
 import React, { useState } from "react";
+//* Next
+import { useRouter } from "next/router";
 //* Components
-import { Button } from "..";
+import { Button, Loader } from "..";
 import toast from "react-hot-toast";
+//* Utility Functions
+import { deleteProject } from "@/utils/functions";
 //* React Icons
 import { BiDotsHorizontalRounded, BiLink } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
@@ -10,10 +14,11 @@ import { LuDownload } from "react-icons/lu";
 import { FiEdit, FiTrash } from "react-icons/fi";
 
 const ProjectActions = ({ session, data, projectId }) => {
+  const router = useRouter();
   const { image } = data?.data?.project;
   const [dots, setDots] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  console.log(data);
+
   const handleCopyLink = () => {
     const url = window.location.href;
     window.navigator.clipboard.writeText(url);
@@ -21,8 +26,13 @@ const ProjectActions = ({ session, data, projectId }) => {
     setDots(false);
   };
 
-  //TODO: Delete Project API
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    const result = await deleteProject(projectId);
+    setIsDeleting(false);
+    console.log(result);
+    if (result.status === "success") router.push("/");
+  };
 
   //TODO: Edit Project API
   const handleEdit = () => {};

@@ -1,3 +1,6 @@
+//* Next-Auth
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 //* Utility Functions
 import { mongoConnect } from "@/utils/functions";
 //* Models
@@ -24,6 +27,8 @@ export default async function handler(req, res) {
       model: Comment,
       populate: { path: "senderId" },
     });
+  const user = await PinterestUser.findById(project?.createdBy?._id);
+  const session = await getServerSession(req, res, authOptions);
 
   //* GET
   if (req.method === "GET") {
@@ -45,6 +50,37 @@ export default async function handler(req, res) {
         status: "failed",
         data: { message: "Error while fetching project | Server Error" },
       });
+    }
+  }
+
+  //* DELETE
+  if (req.method === "DELETE") {
+    //! Authorization check
+    if (!session.user.email) {
+      res
+        .status(403)
+        .json({ status: "failed", message: "You are not authorized!" });
+    }
+
+    //! who want to delete project?
+    if (session.user.email !== user.email) {
+      return res.status(403).json({
+        status: "failed",
+        message: "You are not allowed to delete this project!",
+      });
+    }
+
+    try {
+      const indexOfProject = user.projects.indexOf(projectId);
+
+      await Comment.deleteMany({ projectId: projectId });
+      await Project.findByIdAndDelete(projectId);
+      user.projects.splice(indexOfProject, 1);
+      user.save();
+
+      res.status(200).json({ status: "success" });
+    } catch (error) {
+      res.status(500).json({ status: "failed" });
     }
   }
 }

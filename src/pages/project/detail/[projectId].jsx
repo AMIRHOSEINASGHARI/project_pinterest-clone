@@ -6,7 +6,12 @@ import Image from "next/image";
 //* Next-Auth
 import { useSession } from "next-auth/react";
 //* Components
-import { CreatedBySection, Loader, ProjectActions } from "@/components";
+import {
+  CommentsSection,
+  CreatedBySection,
+  Loader,
+  ProjectActions,
+} from "@/components";
 
 const ProjectDeials = ({ projectId }) => {
   const session = useSession();
@@ -33,7 +38,8 @@ const ProjectDeials = ({ projectId }) => {
 
   if (data && data.status === "success") {
     const { project } = data.data;
-    const { category, description, image, title, websiteUrl } = project;
+    const { category, description, image, title, websiteUrl, comments } =
+      project;
 
     return (
       <div className="pb-3">
@@ -90,8 +96,7 @@ const ProjectDeials = ({ projectId }) => {
                     )}
                   </div>
                   <CreatedBySection data={data} />
-                  {/* //TODO: CommentsSection Component */}
-                  'CommentsSection'
+                  <CommentsSection comments={comments} />
                 </div>
               </div>
               {/* //TODO: PublishComment Component */}

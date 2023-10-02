@@ -1,15 +1,17 @@
-//* React Imports
+//* React
 import { useState } from "react";
-//* Next Imports
+//* Next
 import Image from "next/image";
-//* React Icons Imports
+//* React Icons
 import { AiOutlineFolderAdd } from "react-icons/ai";
 import { FiTrash } from "react-icons/fi";
-//* Components Import
-import { Button, CustomFilter, FormField } from "..";
-//* Constants Import
+//* Components
+import { Button, CustomFilter, FormField, TextList } from "..";
+import toast from "react-hot-toast";
+//* Constants
 import { categories } from "@/constants";
-//* Utility Functions Import
+//* Utility Functions
+import { resizeFile } from "@/utils/functions";
 
 const ProjectForm = ({ type }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,11 +27,50 @@ const ProjectForm = ({ type }) => {
     metaKeywords: [],
   });
 
-  //TODO: create a POST request API
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //TODO: a function that displays image in client and automatically resize it
-  const handleChangeImage = () => {};
+    if (type === "create") {
+      if (form.image && form.category) {
+        setIsSubmitting(true);
+        let result = null; //TODO: fetch from api function
+        setIsSubmitting(false);
+        if (result.status === "success") {
+          toast.success(result.message);
+          router.push("/");
+        } else {
+          toast.error(result.message);
+        }
+      }
+    } else if (type === "edit") {
+      if (form.image && form.category) {
+        setIsSubmitting(true);
+        let result = null; //TODO: fetch from api function
+        setIsSubmitting(false);
+        if (result.status === "success") {
+          toast.success(result.message);
+          router.push("/");
+        } else {
+          toast.error(result.message);
+        }
+      }
+    }
+  };
+  console.log(form);
+  const handleChangeImage = async (e) => {
+    e.preventDefault();
+
+    const file = e.target.files[0];
+
+    if (!file) return;
+    if (!file.type.includes("image/")) return alert("Please an image file!");
+
+    const image = await resizeFile(file);
+    setForm({
+      ...form,
+      image: image,
+    });
+  };
 
   const handleChangeInputValue = (e) => {
     setForm({
@@ -114,6 +155,32 @@ const ProjectForm = ({ type }) => {
           placeholder="https://example.com"
           formValue={form.websiteUrl}
           handleChange={handleChangeInputValue}
+        />
+        {/* META TITLE */}
+        <FormField
+          inputStyles="form-input-base"
+          name="metaTitle"
+          type="text"
+          inputLabel="Meta Title"
+          placeholder="Meta Title"
+          formValue={form.metaTitle}
+          handleChange={handleChangeInputValue}
+        />
+        {/* META DESCRIPTION */}
+        <FormField
+          inputStyles="form-input-base"
+          name="metaDescription"
+          isTextArea
+          inputLabel="Meta Description"
+          placeholder="Meta Description"
+          formValue={form.metaDescription}
+          handleChange={handleChangeInputValue}
+        />
+        <TextList
+          type="metaKeywords"
+          data={form}
+          setData={setForm}
+          title="Meta Keywords"
         />
       </div>
       <Button

@@ -18,7 +18,6 @@ import { shorterText } from "@/utils/functions";
 
 const ProfileMenu = ({ session }) => {
   const [openModal, setOpenModal] = useState(false);
-  console.log(session);
 
   const menuItems = [
     {

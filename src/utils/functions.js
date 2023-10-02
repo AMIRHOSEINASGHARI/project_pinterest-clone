@@ -1,5 +1,7 @@
 //* Mongoose
 import mongoose from "mongoose";
+//* File Resizer
+import FileResizer from "react-image-file-resizer";
 
 export async function mongoConnect() {
   mongoose.set("strictQuery", true);
@@ -19,3 +21,19 @@ export const shorterText = (text, maxCharacter) => {
     return text;
   }
 };
+
+export const resizeFile = (file) =>
+  new Promise((resolve) => {
+    FileResizer.imageFileResizer(
+      file,
+      1000,
+      1000,
+      "JPEG",
+      50,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  }); // $$ RESIZE UPLOADED IMAGE FUNCTION

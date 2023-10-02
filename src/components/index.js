@@ -7,6 +7,7 @@ import FormField from "./form/FormField";
 import CustomFilter from "./form/CategoryFilter";
 import Modal from "./form/Modal";
 import ProjectForm from "./form/ProjectForm";
+import TextList from "./form/TextList";
 
 export {
   Layout,
@@ -18,4 +19,5 @@ export {
   CustomFilter,
   Modal,
   ProjectForm,
+  TextList,
 };

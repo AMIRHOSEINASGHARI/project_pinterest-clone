@@ -12,6 +12,7 @@ import Loader from "./Loader";
 import MasonryLayout from "./layout/MasonryLayout";
 import ProjectCard from "./project/ProjectCard";
 import ProjectActions from "./project/ProjectActions";
+import CreatedBySection from "./project/CreatedBySection";
 
 export {
   Layout,
@@ -28,4 +29,5 @@ export {
   MasonryLayout,
   ProjectCard,
   ProjectActions,
+  CreatedBySection,
 };

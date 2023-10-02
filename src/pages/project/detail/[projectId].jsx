@@ -6,7 +6,7 @@ import Image from "next/image";
 //* Next-Auth
 import { useSession } from "next-auth/react";
 //* Components
-import { Loader, ProjectActions } from "@/components";
+import { CreatedBySection, Loader, ProjectActions } from "@/components";
 
 const ProjectDeials = ({ projectId }) => {
   const session = useSession();
@@ -89,8 +89,7 @@ const ProjectDeials = ({ projectId }) => {
                       <p className="text-xs tracking-tight">{description}</p>
                     )}
                   </div>
-                  {/* //TODO: CreatedBySection Component */}
-                  'CreatedBySection'
+                  <CreatedBySection data={data} />
                   {/* //TODO: CommentsSection Component */}
                   'CommentsSection'
                 </div>

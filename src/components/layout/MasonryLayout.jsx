@@ -1,7 +1,8 @@
-//* Masonry Imports
+//* Masonry
 import Masonry from "react-masonry-css";
-//* Constants Imports
+//* Constants
 import { breackPointsObject } from "@/constants";
+//* Components
 import { ProjectCard } from "..";
 
 const MasonryLayout = ({ projects }) => {

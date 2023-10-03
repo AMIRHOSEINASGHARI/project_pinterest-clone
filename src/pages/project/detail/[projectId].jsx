@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 //* Next
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 //* Next-Auth
 import { useSession } from "next-auth/react";
 //* Components
 import {
+  Button,
   CommentsSection,
   CreatedBySection,
   Loader,
@@ -14,8 +16,11 @@ import {
   ProjectActions,
   PublishComment,
 } from "@/components";
+//* React Icons
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 const ProjectDeials = ({ projectId }) => {
+  const router = useRouter();
   const session = useSession();
   const [data, setData] = useState(null);
   const moreLikeProject = data?.data?.moreLikeProject?.filter(
@@ -33,6 +38,11 @@ const ProjectDeials = ({ projectId }) => {
   useEffect(() => {
     fetchProject();
   }, [projectId]);
+
+  const goPrevPage = (e) => {
+    e.stopPropagation();
+    router.back();
+  };
 
   if (!data)
     return <Loader h="120" w="120" color="#6b7280" text="Loading project" />;
@@ -52,6 +62,11 @@ const ProjectDeials = ({ projectId }) => {
             content={description || "Project Description"}
           />
         </Head>
+        <Button
+          handleButton={goPrevPage}
+          styles="bg-gray-300 h-12 w-12 text-black shadow-lg flex items-center justify-center rounded-full fixed z-10 top-22 left-3 lg:left-8"
+          title={<FaLongArrowAltLeft />}
+        />
         <div className="flex items-center justify-center">
           <div className="rounded-3xl cursor-default flex flex-col lg:flex-row overflow-hidden min-w-[280px] lg:w-[950px] shadow-[0_0_20px_rgba(0,0,0,0.2)]">
             <div>

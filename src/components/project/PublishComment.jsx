@@ -4,17 +4,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 //* Components
 import { Button, FormField, Loader } from "..";
+import toast from "react-hot-toast";
 //* React Icons
 import { RiSendPlaneFill } from "react-icons/ri";
 //* Utility Functions
 import { sendComment } from "@/utils/functions";
-import toast from "react-hot-toast";
 
 const PublishComment = ({ fetchProject, session, projectId }) => {
   const [comment, setComment] = useState("");
   const [isSendingComment, setIsSendingComment] = useState(false);
-  console.log(projectId);
-  //TODO: Send comment function and api
+
   const handleSubmitComment = async (e) => {
     e.preventDefault();
     if (comment) {
@@ -23,6 +22,7 @@ const PublishComment = ({ fetchProject, session, projectId }) => {
       setIsSendingComment(false);
       setComment("");
       if (result.status === "success") fetchProject();
+      toast.success("Comment added");
     } else {
       toast.error("Add some text first!😐😐😐");
     }

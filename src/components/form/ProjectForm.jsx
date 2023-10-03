@@ -14,16 +14,19 @@ import { categories } from "@/constants";
 //* Utility Functions
 import { createProject, resizeFile } from "@/utils/functions";
 
-const ProjectForm = ({ type }) => {
+const ProjectForm = ({ type, projectDetails }) => {
+  //? projectDetails props is for Edit project page
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+
   //* FORM VALUES
   const [form, setForm] = useState({
-    title: "",
-    description: "",
-    image: "",
-    category: "",
-    websiteUrl: "",
+    title: projectDetails?.title || "",
+    description: projectDetails?.description || "",
+    image: projectDetails?.image || "",
+    category: projectDetails?.category || "",
+    websiteUrl: projectDetails?.websiteUrl || "",
   });
 
   const handleSubmit = async (e) => {

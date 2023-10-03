@@ -8,7 +8,7 @@ import { getSession } from "next-auth/react";
 //* Utility Functions
 import { getProjectDetails } from "@/utils/functions";
 //* Components
-import { Loader } from "@/components";
+import { Loader, Modal, ProjectForm } from "@/components";
 //* React Icons
 import { FiAlertTriangle } from "react-icons/fi";
 
@@ -49,7 +49,12 @@ const EditProject = ({ session }) => {
       </div>
     );
 
-  return <div>EditProject</div>;
+  return (
+    <Modal>
+      <h1 className="text-4xl font-black">Edit Project</h1>
+      <ProjectForm type="edit" projectDetails={project?.data?.project} />
+    </Modal>
+  );
 };
 
 export default EditProject;

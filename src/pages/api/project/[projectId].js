@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 //* Utility Functions
 import { mongoConnect } from "@/utils/functions";
+//* Mongoose
+import { Types } from "mongoose";
 //* Models
 import { Project } from "@/utils/models/project";
 import { PinterestUser } from "@/utils/models/user";
@@ -81,6 +83,29 @@ export default async function handler(req, res) {
       res.status(200).json({ status: "success" });
     } catch (error) {
       res.status(500).json({ status: "failed" });
+    }
+  }
+
+  //* PATCH
+  if (req.method === "PATCH") {
+    const { actionType } = JSON.parse(req.body);
+
+    if (actionType === "sendingComment") {
+      try {
+        const { text, senderId } = JSON.parse(req.body);
+        const newComment = await Comment.create({
+          text,
+          projectId: new Types.ObjectId(projectId),
+          senderId: new Types.ObjectId(senderId),
+        });
+
+        project.comments.push(newComment._id);
+        project.save();
+
+        res.status(200).json({ status: "success" });
+      } catch (error) {
+        res.status(500).json({ status: "failed" });
+      }
     }
   }
 }

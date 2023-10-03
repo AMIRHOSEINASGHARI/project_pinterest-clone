@@ -9,7 +9,7 @@ const CreatedBySection = ({ data }) => {
 
   return (
     <Link
-      href={`/profile/${createdBy?.email}`}
+      href={`/profile/${createdBy?._id}`}
       className="flex items-center gap-1 w-fit mb-10"
     >
       {createdBy?.avatarUrl ? (

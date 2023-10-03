@@ -21,19 +21,19 @@ const ProfileMenu = ({ session }) => {
 
   const menuItems = [
     {
-      href: `/profile/${session?.data?.user?.email}`,
+      href: `/profile/${session?.data?.email}`,
       icon: <MdRoomPreferences className="mr-2" />,
       text: "Work Preferences",
       id: 1,
     },
     {
-      href: `/profile/${session?.data?.user?.email}`,
+      href: `/profile/${session?.data?.email}`,
       icon: <FiSettings className="mr-2" />,
       text: "Settings",
       id: 2,
     },
     {
-      href: `/profile/${session?.data?.user?.email}`,
+      href: `/profile/${session?.data?.email}`,
       icon: <AiOutlineUser className="mr-2" />,
       text: "Profile",
       id: 3,
@@ -44,14 +44,14 @@ const ProfileMenu = ({ session }) => {
     <div className="relative">
       <Menu as="div" className="text-gray-600">
         <div className="flex items-center gap-1">
-          {session?.data?.user?.image && (
+          {session?.data?.image && (
             <>
               <Menu.Button onClick={() => setOpenModal(!openModal)}>
                 <BsChevronDown className="hover:bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center p-3 transition duration-100 ease-in-out" />
               </Menu.Button>
-              <Link href={`/profile/${session?.data?.user?.id}`}>
+              <Link href={`/profile/${session?.data?._id}`}>
                 <Image
-                  src={session?.data?.user?.image}
+                  src={session?.data?.image}
                   alt="user pic"
                   width={50}
                   height={50}
@@ -77,7 +77,7 @@ const ProfileMenu = ({ session }) => {
           >
             <div className="flex gap-3 bg-gray-100 rounded-md p-2">
               <Image
-                src={session?.data?.user?.image}
+                src={session?.data?.image}
                 alt="user pic"
                 width={55}
                 height={55}
@@ -85,10 +85,10 @@ const ProfileMenu = ({ session }) => {
               />
               <div>
                 <p className="uppercase font-medium">
-                  {shorterText(session?.data?.user?.name, 10)}
+                  {shorterText(session?.data?.name, 10)}
                 </p>
                 <p className="font-light">
-                  {shorterText(session?.data?.user?.email, 15)}
+                  {shorterText(session?.data?.email, 15)}
                 </p>
               </div>
             </div>

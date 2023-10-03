@@ -45,7 +45,7 @@ const ProjectActions = ({ session, data, projectId }) => {
         handleButton={() => setDots(!dots)}
         title={dots ? <IoMdClose /> : <BiDotsHorizontalRounded />}
       />
-      {session?.data?.user?.email === data?.data?.project?.createdBy?.email && (
+      {session?.data?.email === data?.data?.project?.createdBy?.email && (
         <>
           <Button
             type="button"

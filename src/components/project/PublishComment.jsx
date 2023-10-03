@@ -6,13 +6,27 @@ import Image from "next/image";
 import { Button, FormField, Loader } from "..";
 //* React Icons
 import { RiSendPlaneFill } from "react-icons/ri";
+//* Utility Functions
+import { sendComment } from "@/utils/functions";
+import toast from "react-hot-toast";
 
 const PublishComment = ({ fetchProject, session, projectId }) => {
   const [comment, setComment] = useState("");
   const [isSendingComment, setIsSendingComment] = useState(false);
-
+  console.log(projectId);
   //TODO: Send comment function and api
-  const handleSubmitComment = () => {};
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    if (comment) {
+      setIsSendingComment(true);
+      const result = await sendComment(projectId, comment, session?.data?.id);
+      setIsSendingComment(false);
+      setComment("");
+      if (result.status === "success") fetchProject();
+    } else {
+      toast.error("Add some text first!😐😐😐");
+    }
+  };
 
   return (
     <form
@@ -20,7 +34,7 @@ const PublishComment = ({ fetchProject, session, projectId }) => {
       className="flex items-center gap-1 pt-3 mt-2 border-t"
     >
       <Image
-        src={session?.data?.user?.image}
+        src={session?.data?.image}
         alt="user"
         width={50}
         height={50}

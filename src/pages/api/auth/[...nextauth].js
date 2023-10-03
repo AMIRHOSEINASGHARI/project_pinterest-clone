@@ -37,5 +37,15 @@ export default nextAuth({
         return false;
       }
     },
+    async session({ session }) {
+      const user = await PinterestUser.findOne({ email: session.user.email });
+      const newSession = {
+        ...session.user,
+        id: user?._id,
+        role: user?.role,
+      };
+
+      return newSession;
+    },
   },
 });

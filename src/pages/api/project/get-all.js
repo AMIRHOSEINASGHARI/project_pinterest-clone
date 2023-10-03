@@ -14,11 +14,7 @@ export default async function handler(req, res) {
     console.log(error);
   }
 
-  const projects = await Project.find().populate({
-    path: "createdBy",
-    model: PinterestUser,
-    select: ["avatarUrl", "email", "name"],
-  });
+  const projects = await Project.find().sort({ createdAt: -1 });
 
   if (projects.length) {
     res.status(200).json({ status: "success", data: projects });

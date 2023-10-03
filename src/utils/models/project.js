@@ -9,6 +9,7 @@ const projectSchema = new Schema({
   websiteUrl: { type: String, default: "" },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   createdBy: { type: Schema.Types.ObjectId, ref: "PinterestUser" },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Project = models.Project || model("Project", projectSchema);

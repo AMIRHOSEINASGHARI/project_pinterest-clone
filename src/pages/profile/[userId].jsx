@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 //* Components
-import { Button, FormField, Loader } from "@/components";
+import { Button, FormField, Loader, MasonryLayout } from "@/components";
 //* React Icons
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { FaLongArrowAltLeft } from "react-icons/fa";
@@ -139,6 +139,23 @@ const UserProfile = (props) => {
               )}
             </div>
           </div>
+        </div>
+        <div>
+          <div className="flex justify-center">
+            <h1 className="text-center py-2 mb-3 relative border-b-4 font-medium border-black w-fit">
+              Created
+              <span className="absolute -top-2 -right-5 bg-purple-600 text-white rounded-full h-6 w-6 flex items-center justify-center text-xs">
+                {projects?.length}
+              </span>
+            </h1>
+          </div>
+          {projects?.length ? (
+            <MasonryLayout projects={projects} />
+          ) : (
+            <div className="flex justify-center">
+              <h1>No Posts</h1>
+            </div>
+          )}
         </div>
       </div>
     );

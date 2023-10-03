@@ -2,11 +2,19 @@
 import { useEffect, useState } from "react";
 //* Next
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 //* Components
-import { Loader } from "@/components";
+import { Button, FormField, Loader } from "@/components";
+//* React Icons
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 const UserProfile = (props) => {
+  const session = useSession();
   const [userData, setUserData] = useState({});
+
+  const [userDescription, setUserDescription] = useState("");
+  const [activateTyping, setActivateTyping] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -16,6 +24,13 @@ const UserProfile = (props) => {
     };
     fetchUser();
   }, [props?.userId]);
+
+  const changeHandler = (e) => {
+    setUserDescription(e.target.value);
+  };
+
+  // TODO: A API for update user profile
+  const handleUpdateUserProfile = () => {};
 
   if (Object.keys(userData).length === 0)
     return (
@@ -58,6 +73,43 @@ const UserProfile = (props) => {
                     {description}
                   </p>
                 </div>
+              )}
+              {!description && session?.data?.id === _id && (
+                <form
+                  onSubmit={handleUpdateUserProfile}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <Button
+                    title={
+                      <>
+                        <span>Tell us more about yourself</span>
+                        {activateTyping ? <BsChevronUp /> : <BsChevronDown />}
+                      </>
+                    }
+                    type="button"
+                    styles="text-center font-bold flex items-center gap-3 bg-gray-100 rounded-full py-1.5 px-4"
+                    handleButton={() => setActivateTyping(!activateTyping)}
+                  />
+                  {activateTyping && (
+                    <div>
+                      <FormField
+                        inputStyles="bg-gray-100 py-2 px-3 rounded-lg w-[280px] sm:w-[400px] lg:w-[600px] text-gray-600 focus:outline outline-blue-500"
+                        placeholder="Up to 30 Characters..."
+                        formValue={userDescription}
+                        handleChange={changeHandler}
+                        type="text"
+                        isTextArea
+                      />
+                    </div>
+                  )}
+                  {activateTyping && userDescription.length >= 30 && (
+                    <Button
+                      type="submit"
+                      title={isSubmitting ? "Saving..." : "Save"}
+                      styles="rounded-full py-1.5 px-4 bg-black text-white tracking-tight font-semibold text-sm mt-2"
+                    />
+                  )}
+                </form>
               )}
             </div>
           </div>

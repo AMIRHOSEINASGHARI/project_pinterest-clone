@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 //* Next
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 //* Components
 import { Button, FormField, Loader } from "@/components";
 //* React Icons
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 //* Utility Functions
 import { updateUserProfile } from "@/utils/functions";
 
 const UserProfile = (props) => {
   const session = useSession();
+  const router = useRouter();
   const [userData, setUserData] = useState({});
 
   const [userDescription, setUserDescription] = useState("");
@@ -45,6 +48,11 @@ const UserProfile = (props) => {
     }
   };
 
+  const goHome = (e) => {
+    e.stopPropagation();
+    router.push("/");
+  };
+
   if (Object.keys(userData).length === 0)
     return (
       <Loader h="120" w="120" color="#6b7280" text="Loading user profile" />
@@ -58,6 +66,11 @@ const UserProfile = (props) => {
 
     return (
       <div>
+        <Button
+          handleButton={goHome}
+          styles="bg-gray-300 h-12 w-12 text-black shadow-lg flex items-center justify-center rounded-full fixed z-10 top-24 left-3 lg:left-8"
+          title={<FaLongArrowAltLeft />}
+        />
         <div className="flex flex-col items-center mb-10 lg:mb-36">
           <a href={avatarUrl} download target="_blank">
             <Image

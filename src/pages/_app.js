@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
           <title>Pinterest</title>
         </Head>
         <Layout>
-          <div className="mt-24">
+          <div className="mt-20">
             <Component {...pageProps} />
           </div>
           <Toaster />

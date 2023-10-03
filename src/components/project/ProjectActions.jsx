@@ -34,7 +34,6 @@ const ProjectActions = ({ session, data, projectId }) => {
     if (result.status === "success") router.push("/");
   };
 
-  //TODO: Edit Project API
   const handleEdit = () => {
     router.push(`/project/edit/${projectId}`);
   };

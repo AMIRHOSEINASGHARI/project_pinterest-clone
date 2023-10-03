@@ -68,6 +68,12 @@ export const updateUserProfile = async (
   return data;
 };
 
+export const getProjectDetails = async (projectId) => {
+  const res = await fetch(`/api/project/${projectId}`);
+  const data = await res.json();
+  return data;
+};
+
 export const resizeFile = (file) =>
   new Promise((resolve) => {
     FileResizer.imageFileResizer(

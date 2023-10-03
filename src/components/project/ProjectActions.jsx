@@ -35,7 +35,9 @@ const ProjectActions = ({ session, data, projectId }) => {
   };
 
   //TODO: Edit Project API
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    router.push(`/project/edit/${projectId}`);
+  };
 
   return (
     <div className="relative flex items-center gap-2">

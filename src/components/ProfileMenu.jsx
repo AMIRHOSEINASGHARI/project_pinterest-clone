@@ -18,22 +18,21 @@ import { shorterText } from "@/utils/functions";
 
 const ProfileMenu = ({ session }) => {
   const [openModal, setOpenModal] = useState(false);
-
   const menuItems = [
     {
-      href: `/profile/${session?.data?.email}`,
+      href: `/profile/${session?.data?.id}`,
       icon: <MdRoomPreferences className="mr-2" />,
       text: "Work Preferences",
       id: 1,
     },
     {
-      href: `/profile/${session?.data?.email}`,
+      href: `/profile/${session?.data?.id}`,
       icon: <FiSettings className="mr-2" />,
       text: "Settings",
       id: 2,
     },
     {
-      href: `/profile/${session?.data?.email}`,
+      href: `/profile/${session?.data?.id}`,
       icon: <AiOutlineUser className="mr-2" />,
       text: "Profile",
       id: 3,
@@ -49,12 +48,13 @@ const ProfileMenu = ({ session }) => {
               <Menu.Button onClick={() => setOpenModal(!openModal)}>
                 <BsChevronDown className="hover:bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center p-3 transition duration-100 ease-in-out" />
               </Menu.Button>
-              <Link href={`/profile/${session?.data?._id}`}>
+              <Link href={`/profile/${session?.data?.id}`}>
                 <Image
                   src={session?.data?.image}
                   alt="user pic"
                   width={50}
                   height={50}
+                  priority
                   className="rounded-full w-9"
                 />
               </Link>

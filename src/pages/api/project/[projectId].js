@@ -9,6 +9,15 @@ import { Types } from "mongoose";
 import { Project } from "@/utils/models/project";
 import { PinterestUser } from "@/utils/models/user";
 import { Comment } from "@/utils/models/comment";
+// Cloudinary
+import { v2 as cloudinary } from "cloudinary";
+
+//* CLOUDINARY CONFIG
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export default async function handler(req, res) {
   try {
@@ -105,6 +114,31 @@ export default async function handler(req, res) {
         res.status(200).json({ status: "success" });
       } catch (error) {
         res.status(500).json({ status: "failed" });
+      }
+    } else if (actionType === "editProject") {
+      const { newForm } = JSON.parse(req.body);
+
+      try {
+        if (newForm.image && newForm.image !== project.image) {
+          const newImageResult = await cloudinary.uploader.upload(
+            newForm.image,
+            cloudinaryOptions
+          );
+          project.image = newImageResult.url;
+        } else {
+          project.image = newForm.image;
+        }
+
+        project.title = newForm.title;
+        project.description = newForm.description;
+        project.category = newForm.category;
+        project.websiteUrl = newForm.websiteUrl;
+
+        project.save();
+
+        return res.status(200).json({ status: "success" });
+      } catch (error) {
+        return res.status(500).json({ status: "failed" });
       }
     }
   }

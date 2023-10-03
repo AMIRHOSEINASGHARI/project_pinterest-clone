@@ -41,6 +41,16 @@ export const deleteProject = async (projectId) => {
   return data;
 };
 
+export const editProject = async (projectId, form) => {
+  const res = await fetch(`/api/project/${projectId}`, {
+    method: "PATCH",
+    body: JSON.stringify({ newForm: form, actionType: "editProject" }),
+    headers: { "Content-Type": "applicaiton/json" },
+  });
+  const data = await res.json();
+  return data;
+};
+
 export async function sendComment(projectId, text, senderId) {
   const res = await fetch(`/api/project/${projectId}`, {
     method: "PATCH",

@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 //* Constants
 import { categories } from "@/constants";
 //* Utility Functions
-import { createProject, resizeFile } from "@/utils/functions";
+import { createProject, editProject, resizeFile } from "@/utils/functions";
 
 const ProjectForm = ({ type, projectDetails }) => {
   //? projectDetails props is for Edit project page
@@ -47,13 +47,13 @@ const ProjectForm = ({ type, projectDetails }) => {
     } else if (type === "edit") {
       if (form.image && form.category) {
         setIsSubmitting(true);
-        let result = null; //TODO: fetch from api function
+        const result = await editProject(projectDetails?._id, form);
         setIsSubmitting(false);
         if (result.status === "success") {
-          toast.success(result.message);
+          toast.success("Project Edited");
           router.push("/");
         } else {
-          toast.error(result.message);
+          toast.error("Server Error");
         }
       }
     }

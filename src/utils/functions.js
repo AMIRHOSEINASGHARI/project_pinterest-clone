@@ -51,6 +51,23 @@ export async function sendComment(projectId, text, senderId) {
   return data;
 }
 
+export const updateUserProfile = async (
+  userId,
+  userDescription,
+  currentUserId
+) => {
+  const res = await fetch(`/api/user/${userId}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      description: userDescription,
+      authorizedUserId: currentUserId,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  return data;
+};
+
 export const resizeFile = (file) =>
   new Promise((resolve) => {
     FileResizer.imageFileResizer(

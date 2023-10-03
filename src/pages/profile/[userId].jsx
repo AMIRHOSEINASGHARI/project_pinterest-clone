@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { Button, FormField, Loader } from "@/components";
 //* React Icons
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+//* Utility Functions
+import { updateUserProfile } from "@/utils/functions";
 
 const UserProfile = (props) => {
   const session = useSession();
@@ -29,8 +31,19 @@ const UserProfile = (props) => {
     setUserDescription(e.target.value);
   };
 
-  // TODO: A API for update user profile
-  const handleUpdateUserProfile = () => {};
+  const handleUpdateUserProfile = async (e) => {
+    e.preventDefault();
+    if (userDescription.length >= 30) {
+      setIsSubmitting(true);
+      const result = await updateUserProfile(
+        userData?.data?.user?._id,
+        userDescription,
+        session?.data?.id
+      );
+      setIsSubmitting(false);
+      if (result?.status === "success") window.location.reload();
+    }
+  };
 
   if (Object.keys(userData).length === 0)
     return (

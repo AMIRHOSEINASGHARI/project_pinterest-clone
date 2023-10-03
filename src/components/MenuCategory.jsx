@@ -19,13 +19,14 @@ const MenuCategory = ({ categories, showMenu, setShowMenu, session }) => {
     router.push(newPathName);
     setShowMenu(false);
   };
-
+  console.log(router);
   return (
     <>
       <div className="fixed bg-white left-0 top-[79px] pb-24 pt-2 z-30 h-screen flex flex-col justify-between overflow-auto">
         <div>
           <Link
             href="/"
+            onClick={() => setShowMenu(false)}
             className="flex items-center hover:bg-gray-200 hover:text-gray-800 text-gray-600 transition duration-100 ease-in-out py-3 pl-5 lg:pl-8 pr-14 lg:pr-20 cursor-pointer"
           >
             <div className="mr-6 text-xl lg:text-3xl">

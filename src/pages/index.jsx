@@ -3,19 +3,29 @@ import { useEffect, useState } from "react";
 //* Components
 import { Loader, MasonryLayout } from "@/components";
 
-const Home = () => {
+const Home = ({ query }) => {
   const [projects, setProjects] = useState(null);
   useEffect(() => {
     const fetchProjects = async () => {
       const res = await fetch("/api/project/get-all");
       const data = await res.json();
 
-      //TODO: filtering the projects
-      setProjects(data?.data);
+      const filterData = data?.data?.filter(
+        (project) =>
+          project.category.toLowerCase() === query?.category?.toLowerCase()
+      );
+
+      if (query?.category && filterData.length !== 0) {
+        setProjects(filterData);
+      } else if (query?.category && filterData.length === 0) {
+        setProjects([]);
+      } else {
+        setProjects(data?.data);
+      }
     };
 
     fetchProjects();
-  }, []);
+  }, [query]);
 
   if (projects === null) {
     return (
@@ -34,3 +44,9 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getServerSideProps(context) {
+  return {
+    props: { query: context.query },
+  };
+}

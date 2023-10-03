@@ -1,7 +1,9 @@
 //* React
 import { useEffect, useState } from "react";
+//* Components
+import { Loader } from "@/components";
 
-const User = (props) => {
+const UserProfile = (props) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -13,10 +15,22 @@ const User = (props) => {
     fetchUser();
   }, [props?.userId]);
 
-  return <div>Profile</div>;
+  if (Object.keys(userData).length === 0)
+    return (
+      <Loader h="120" w="120" color="#6b7280" text="Loading user profile" />
+    );
+
+  if (userData?.status === "failed") return <h1>Error!</h1>;
+
+  if (userData?.status === "success") {
+    const { avatarUrl, description, email, name, projects, _id } =
+      userData?.data?.user;
+
+    return <div>Profile</div>;
+  }
 };
 
-export default User;
+export default UserProfile;
 
 export async function getServerSideProps(req) {
   return {

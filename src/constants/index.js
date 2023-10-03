@@ -83,3 +83,58 @@ export const breackPointsObject = {
   4500: 12,
   5000: 15,
 };
+
+export const categoryFilters = [
+  {
+    name: "PC Setup",
+    icon: <GiComputerFan />,
+  },
+  {
+    name: "UI/UX",
+    icon: <AiOutlineFormatPainter />,
+  },
+  {
+    name: "Gaming",
+    icon: <TbDeviceGamepad2 />,
+  },
+  {
+    name: "Mobile",
+    icon: <TbDeviceMobile />,
+  },
+  {
+    name: "Computer",
+    icon: <HiMiniComputerDesktop />,
+  },
+  {
+    name: "Cars",
+    icon: <TbCar />,
+  },
+  {
+    name: "Wallpaper",
+    icon: <BiImage />,
+  },
+  {
+    name: "Photo",
+    icon: <TbCamera />,
+  },
+  {
+    name: "Nature",
+    icon: <PiMountainsLight />,
+  },
+  {
+    name: "Art",
+    icon: <MdOutlineDraw />,
+  },
+  {
+    name: "Cats",
+    icon: <LuCat />,
+  },
+  {
+    name: "Manipulation",
+    icon: <DiPhotoshop />,
+  },
+  {
+    name: "Others",
+    icon: <DiGhostSmall />,
+  },
+];

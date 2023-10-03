@@ -6,11 +6,13 @@ import Image from "next/image";
 //* Next-Auth
 import { useSession } from "next-auth/react";
 //* Components
-import { AuthProviders, Button, ProfileMenu } from "..";
+import { AuthProviders, Button, MenuCategory, ProfileMenu } from "..";
 //* React Icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
 import { AiOutlinePlus } from "react-icons/ai";
+//* Constants
+import { categoryFilters } from "@/constants";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -50,7 +52,14 @@ const Navbar = () => {
           <AuthProviders />
         )}
       </div>
-      {/* //TODO: MenuCategory Component */}
+      {showMenu && (
+        <MenuCategory
+          categories={categoryFilters}
+          session={session}
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+        />
+      )}
     </header>
   );
 };

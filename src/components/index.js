@@ -15,6 +15,7 @@ import ProjectActions from "./project/ProjectActions";
 import CreatedBySection from "./project/CreatedBySection";
 import CommentsSection from "./project/CommentsSection";
 import PublishComment from "./project/PublishComment";
+import MenuCategory from "./MenuCategory";
 
 export {
   Layout,
@@ -34,4 +35,5 @@ export {
   CreatedBySection,
   CommentsSection,
   PublishComment,
+  MenuCategory,
 };

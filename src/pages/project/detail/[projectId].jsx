@@ -10,6 +10,7 @@ import {
   CommentsSection,
   CreatedBySection,
   Loader,
+  MasonryLayout,
   ProjectActions,
   PublishComment,
 } from "@/components";
@@ -110,8 +111,15 @@ const ProjectDeials = ({ projectId }) => {
             </div>
           </div>
         </div>
-        {/* //TODO: More like project section */}
-        'More like project section'
+        {data?.data?.moreLikeProject.length > 0 && (
+          <div onClick={(e) => e.stopPropagation()}>
+            <h1 className="text-center font-medium tracking-tight mt-12 mb-4">
+              More on this category{" "}
+              <span className="font-bold text-lg">'{category}'</span>
+            </h1>
+            <MasonryLayout projects={moreLikeProject} />
+          </div>
+        )}
       </div>
     );
   } else {

@@ -18,6 +18,8 @@ import {
 } from "@/components";
 //* React Icons
 import { FaLongArrowAltLeft } from "react-icons/fa";
+//* Utility functions
+import { shorterText } from "@/utils/functions";
 
 const ProjectDeials = ({ projectId }) => {
   const router = useRouter();
